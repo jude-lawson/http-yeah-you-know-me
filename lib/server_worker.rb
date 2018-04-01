@@ -16,6 +16,4 @@ class ServerWorker
     "#{@status_codes[status]}#{headers}\r\n"
   end
 
-
-
 end
