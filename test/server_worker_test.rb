@@ -1,15 +1,11 @@
 require 'minitest/autorun'
 require 'minitest/pride'
+require 'net/http'
 require_relative '../lib/server_worker'
 
 class ServerWorkerTest < Minitest::Test
   def setup
-    @worker = ServerWorker.new(9292)
-    @server = @worker.create
-  end
-
-  def teardown
-    @server.close
+    @worker = ServerWorker.new(3000)
   end
 
   def test_server_worker_exists
@@ -17,12 +13,15 @@ class ServerWorkerTest < Minitest::Test
   end
 
   def test_server_worker_can_create_tcp_server
-    assert_instance_of TCPServer, @server
+    server = @worker.create
+    assert_instance_of TCPServer, server
+    server.close
   end
 
-  def test_tcp_server_uses_port_9292
-    assert_equal 9292, @server.addr[1]
+  
+  def test_server_responds_to_http_request_on_port_9292
+    res = Net::HTTP.get_response(URI('http://localhost:9292'))
+    assert res.body
   end
-
 
 end
