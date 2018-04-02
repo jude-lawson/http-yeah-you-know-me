@@ -21,4 +21,8 @@ class ServerWorker
       line = client.gets
     end
   end
+
+  def close(client)
+    client.close
+  end
 end
