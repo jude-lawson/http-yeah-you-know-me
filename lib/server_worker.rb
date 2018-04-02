@@ -9,6 +9,16 @@ class ServerWorker
     @request = []
   end
 
+  def start_server_loop
+    loop do
+      client = create_client
+      receive_request(client)
+      puts "Received request: "
+      p request
+      close(client)
+    end
+  end
+
   def create_client
     @server.accept
   end
