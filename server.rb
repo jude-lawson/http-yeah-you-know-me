@@ -2,14 +2,16 @@ require_relative './lib/server_worker'
 worker = ServerWorker.new(9292)
 server = worker.server
 
-worker
+loop do
+  client = server.accept
+  request = []
+  line = client.gets
+  until line == "\r\n"
+    request << line
+    line = client.gets
+  end
 
-# loop do
-# connection = server.accept
-# puts "Connected"
-# worker.successful_request
-# output = worker.output
-# connection.puts worker.response(:OK, "Content-Length: #{output.length}\r\n")
-# connection.puts output
-# connection.close
-# end
+  puts "Received request: "
+  p request
+  client.close
+end
