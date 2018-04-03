@@ -16,11 +16,9 @@ class ServerWorkerTest < Minitest::Test
   end
 
   def test_worker_and_server_exist
-    # worker = ServerWorker.new(3000)
-    server = @worker.server
+    # server = @worker.server
     assert_instance_of ServerWorker, @worker
-    assert_instance_of TCPServer, server
-    # @worker.server.close
+    assert_instance_of TCPServer, @worker.server
   end
 
   def test_server_responds
@@ -28,10 +26,12 @@ class ServerWorkerTest < Minitest::Test
     assert res
   end
 
-  def test_server_loop_can_start
-    # worker = ServerWorker.new(3000)
-    # @worker.server.close
+  # Not quite sure how to test for looping methods (start_server_loop and create_client)
+  #  I'm assuming these are mostly tested as part of other integration tests
+
+  def test_request_to_root_responds_with_hello_world
+    res = Net::HTTP.get_response(URI('http://localhost:9292'))
+    expected = "<html><head></head><body><p>Hello, World! (_regExpHere_)</p></body></html>"
+    assert_equal expected, res.body
   end
-
-
 end
