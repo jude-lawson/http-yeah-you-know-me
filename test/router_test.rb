@@ -17,4 +17,9 @@ class RouterTest < Minitest::Test
     assert_instance_of Response, @router.respond('/')
   end
 
+  def test_path_for_root_on_returned_response_object
+    response = @router.respond('/')
+    assert_equal '/', response.path
+  end
+
 end
