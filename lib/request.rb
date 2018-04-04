@@ -1,6 +1,6 @@
 class Request
 
-  def initialize
+  def initialize(lines_of_request)
     # Method
     # Path
     # Version of protocol
