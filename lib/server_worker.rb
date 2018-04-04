@@ -16,25 +16,11 @@ class ServerWorker
 
   def start_server_loop
     loop do
-      # puts "Server has started!"
-      # client = create_client
-      # receive_request(client)
-      # puts "Received request: "
-      # p @request
-      # @router.respond('/')
-      # # ======= #
-      # # output = "<html><head></head><body><p>Hello, World! (#{@request_count})4</p></body></html>"
-      # # headers = ["HTTP/1.1 200 ok\r\n",
-      # #           "Content-Length: #{output.length}\r\n\r\n"]
-      # # client.puts Response.headers
-      # # client.puts Response.body
-      # # client.puts headers
-      # # client.puts output
-      # close(client)
       puts "Server is listening!"
       client = @server.accept
       request = handle_request(client)
-      create_response(request)
+      response = Response.new(request)
+      send_response(client, response)
       client.close
     end
   end
@@ -51,7 +37,10 @@ class ServerWorker
     Request.new(lines_of_request)
   end
 
-  def create_response(request)
+  def send_response(client, response)
+    @client.puts response.status_line
+    @client.puts response.headers
+    @client.puts response.body
   end
     
 
