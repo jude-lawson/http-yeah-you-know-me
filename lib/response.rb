@@ -1,17 +1,31 @@
 class Response
-  def initialize()
+
+  def initialize
+    # URL
+    # Path
+    # Status Line
+    # Headers hash
+    # Body string
   end
 
   def headers
-    "HTTP/1.1 200 ok\r\nContent-Length: 0\r\n\r\n"
+  end
+
+  def set_path
+  end
+
+  def set_url
+  end
+
+  def set_status_line
+  end
+
+  def set_headers
+  end
+
+  def set_body
   end
 
   def body(path)
-    # case statement based on path from router
-    # returns body html output (later based on templates)
-    case path
-    when 'index'
-    "<html><head></head><body><p>Hello, World! (_requestCount_)</p></body></html>"
-    end
   end
 end
