@@ -50,7 +50,7 @@ class ServerWorker
   end
 
   def create_response(request)
-    
+  end
     
 
 
