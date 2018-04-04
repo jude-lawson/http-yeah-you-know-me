@@ -11,24 +11,29 @@ class ResponseTest < Minitest::Test
     assert_instance_of Response, @response
   end
 
-  def test_it_returns_valid_headers
-    # return a string with 
+  def test_response_has_path
+    @response.set_path
+    assert_equal expected, @response.path
   end
 
-  def test_headers_has_status_line
-  end
-  
-  def test_headers_has_some_header_information
-  end
-
-  def test_headers_ends_with_newline
+  def test_response_has_url
+    @response.set_url
+    assert_equal expected, @response.url
   end
 
-  def test_it_returns_appropriate_response_to_root
-    expected = "<html><head></head><body><p>Hello, World! (_someRegExp_)</p></body></html>"
-    assert_equal expected, @response.body('/')
+  def test_response_has_status_line
+    @response.set_status_line
+    assert_equal expected, @response.status_line
   end
 
-  def test_it_returns_appropriate_response_to_hello
+  def test_response_has_headers
+    @response.set_headers
+    assert_equal expected, @response.headers
   end
+
+  def test_response_has_body
+    @response.set_body
+    assert_equal expected, @response.body
+  end
+
 end
