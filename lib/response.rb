@@ -1,10 +1,10 @@
 class Response
 
-  def initialize
-    # URL
-    # Path
+  def initialize(request)
+    # URL (maybe)
+    # Path (maybe)
     # Status Line
-    # Headers hash
+    # Headers, just a string?
     # Body string
   end
 
