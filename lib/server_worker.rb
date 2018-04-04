@@ -1,5 +1,7 @@
 require 'socket'
-require_relative './router'
+require './lib/router'
+require './lib/response'
+require './lib/request'
 
 class ServerWorker
   attr_reader :server,
@@ -29,22 +31,22 @@ class ServerWorker
       # # client.puts headers
       # # client.puts output
       # close(client)
-      puts "Server has started!"
+      puts "Server is listening!"
       client = @server.accept
-      receive_request(client)
-      request = handle_request
+      request = handle_request(client)
       create_response(request)
-
+      client.close
     end
   end
 
   def handle_request(client)
-    lines__of_request = []
+    lines_of_request = []
     line = client.gets
     until line == "\r\n"
       lines_of_request << line
       line = client.gets
     end
+    puts "Received request: #{lines_of_request}"
     add_to_request_count
     Request.new(lines_of_request)
   end
