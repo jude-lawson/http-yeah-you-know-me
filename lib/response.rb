@@ -1,31 +1,31 @@
 class Response
+  attr_reader :status_line,
+              :path,
+              :method,
+              :protocol,
+              :body,
+              :headers,
+              :router
 
   def initialize(request)
-    # URL (maybe)
-    # Path (maybe)
-    # Status Line
-    # Headers, just a string?
+    # @request = request
+    @status_line = "HTTP/1.1 200 OK"
+    @path = request.path
+    @method = request.method
+    @protocol = request.protocol
+    @router = Router.new
     # Body string
-  end
-
-  def headers
-  end
-
-  def set_path
-  end
-
-  def set_url
-  end
-
-  def set_status_line
-  end
-
-  def set_headers
-  end
-
-  def set_body
-  end
-
-  def body(path)
+    @body = "<html><head></head><body><p>Hello, World! (0)</p></body></html>"
+    # Headers, just a string?
+      # Date
+      # Server
+      # Content-Type
+      # Content-Length
+    @headers = [
+      "Date: #{Time.now}",
+      "Server: ruby",
+      "Content-Type: text/html, charset=utf-8",
+      "Content-Length: #{@body.length}"
+    ]
   end
 end
