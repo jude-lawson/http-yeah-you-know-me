@@ -17,7 +17,10 @@ class Request
   end
 
   def parse_initial_line
-    
+    method_path_and_protocol = @initial_line.chomp.split(" ")
+    @method = method_path_and_protocol[0]
+    @path = method_path_and_protocol[1]
+    @protocol = method_path_and_protocol[2]
   end
 
 end
