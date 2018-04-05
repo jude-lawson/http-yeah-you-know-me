@@ -39,7 +39,7 @@ class ResponseTest < Minitest::Test
   end
 
   def test_response_has_headers
-    expected = ["Date: #{Time.now}","server: ruby","Content-Type: text/html, charset=utf-8","Content-Length: 27"]
+    expected = ["Date: #{Time.now}","Server: ruby","Content-Type: text/html, charset=utf-8","Content-Length: #{@response.body.length}"]
     assert_equal expected, @response.headers
   end
 
