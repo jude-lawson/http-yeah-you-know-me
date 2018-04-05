@@ -19,7 +19,7 @@ class ServerWorker
       puts "Server is listening!"
       client = @server.accept
       request = handle_request(client)
-      response = Response.new(request)
+      response = Response.new(request, @request_count)
       # require 'pry';binding.pry
       send_response(client, response)
       client.close
@@ -44,9 +44,6 @@ class ServerWorker
     client.puts response.body
   end
     
-
-
-  # Needs a test
   def add_to_request_count
     @request_count += 1
   end

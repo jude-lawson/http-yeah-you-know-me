@@ -7,8 +7,9 @@ class Response
               :headers,
               :router
 
-  def initialize(request)
+  def initialize(request, request_count)
     # @request = request
+    @request_count = request_count
     @status_line = "HTTP/1.1 200 OK"
     @path = request.path
     @method = request.method
@@ -33,6 +34,6 @@ class Response
 
   def set_body(path)
     #returns string of html using Router, but for now...
-    "<html><head></head><body><p>Hello, World! (#{@request_count})</p></body></html>"
+    @router.respond('/')
   end
 end

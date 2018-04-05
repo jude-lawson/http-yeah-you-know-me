@@ -13,4 +13,17 @@ class RouterTest < Minitest::Test
     assert_instance_of Router, @router
   end
 
+  def test_response_to_root_returns_index_html
+    expected = """
+    <html>
+      <head>
+      </head>
+      <body>
+        <p>Hello, World! #{@request_count}</p>
+      </body>
+    </html>
+    """
+    assert_equal expected, @router.respond('/')
+  end
+
 end
