@@ -24,5 +24,4 @@ class Request
     @path = method_path_and_protocol[1]
     @protocol = method_path_and_protocol[2]
   end
-
 end
