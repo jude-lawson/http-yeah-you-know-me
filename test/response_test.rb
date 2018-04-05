@@ -2,6 +2,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/response'
 require './lib/request'
+require './lib/router'
 
 class ResponseTest < Minitest::Test
   def setup
@@ -14,28 +15,36 @@ class ResponseTest < Minitest::Test
     assert_instance_of Response, @response
   end
 
-  def test_response_has_path
-    @response.set_path
-    assert_equal expected, @response.path
+  # If we don't need to read this anywhere in source, remove test and getter
+  # to improve attribute encapsulation
+  def test_response_object_has_valid_router
+    assert_instance_of Router, @response.router
   end
 
-  def test_response_has_url
-    @response.set_url
-    assert_equal expected, @response.url
+  def test_response_can_read_request_path
+    assert_equal '/hello', @response.path
+  end
+
+  def test_response_can_read_method
+    assert_equal 'GET', @response.method
+  end
+
+  def test_response_can_read_protocol
+    assert_equal 'HTTP/1.1', @response.protocol
   end
 
   def test_response_has_status_line
-    @response.set_status_line
+    expected = "HTTP/1.1 200 OK"
     assert_equal expected, @response.status_line
   end
 
   def test_response_has_headers
-    @response.set_headers
+    expected = ["Date: #{Time.now}","server: ruby","Content-Type: text/html, charset=utf-8","Content-Length: 27"]
     assert_equal expected, @response.headers
   end
 
-  def test_response_has_body
-    @response.set_body
+  def test_response_to_root_has_body
+    expected = "<html><head></head><body><p>Hello, World! (0)</p></body></html>"
     assert_equal expected, @response.body
   end
 
