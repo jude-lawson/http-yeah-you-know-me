@@ -13,6 +13,7 @@ class Response
     @path = request.path
     @method = request.method
     @protocol = request.protocol
+    @request_count = request.count
     @router = Router.new
     # Body string
     @body = set_body(@path)
@@ -32,6 +33,6 @@ class Response
 
   def set_body(path)
     #returns string of html using Router, but for now...
-    "<html><head></head><body><p>Hello, World! (0)</p></body></html>"
+    "<html><head></head><body><p>Hello, World! (#{@request_count})</p></body></html>"
   end
 end

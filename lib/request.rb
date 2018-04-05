@@ -4,9 +4,11 @@ class Request
               :path,
               :protocol,
               :headers,
-              :body
+              :body,
+              :count
 
-  def initialize(lines_of_request)
+  def initialize(lines_of_request, count)
+    @count = count
     @lines_of_request = lines_of_request
     @initial_line = lines_of_request[0]
     @method = nil
