@@ -8,7 +8,7 @@ class Response
               :router
 
   def initialize(request, request_count)
-    # @request = request
+    @request = request
     @request_count = request_count
     @status_line = "HTTP/1.1 200 OK"
     @path = request.path
@@ -16,13 +16,7 @@ class Response
     @protocol = request.protocol
     @request_count = request_count
     @router = Router.new
-    # Body string
     @body = set_body(@path)
-    # Headers, just a string?
-      # Date
-      # Server
-      # Content-Type
-      # Content-Length
     @headers = [
       "Date: #{Time.now}",
       "Server: ruby",
@@ -33,6 +27,6 @@ class Response
   end
 
   def set_body(path)
-    @router.respond('/', @request_count)
+    @router.respond('/', @request, @request_count)
   end
 end
