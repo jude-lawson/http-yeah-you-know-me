@@ -1,7 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/router'
-require './lib/response'
 require 'socket'
 
 class RouterTest < Minitest::Test
@@ -14,15 +13,7 @@ class RouterTest < Minitest::Test
   end
 
   def test_response_to_root_returns_index_html
-    expected = """
-    <html>
-      <head>
-      </head>
-      <body>
-        <p>Hello, World! #{@request_count}</p>
-      </body>
-    </html>
-    """
+    expected = "<!DOCTYPE html>\n<html>\n<head>\n</head>\n  <body>\n    <p>Hello, World! (0)</p>\n  </body>\n</html>"
     assert_equal expected, @router.respond('/')
   end
 

@@ -1,21 +1,15 @@
+require './lib/html_reader'
+
 class Router
   def initialize
-    # @response = Response.new
+    @reader = HTMLReader.new
   end
 
-  def respond(path)
+  def respond(path, request_count = 0)
     # Local variable response_string
     case path
     when '/'
-      """
-    <html>
-      <head>
-      </head>
-      <body>
-        <p>Hello, World! #{@request_count}</p>
-      </body>
-    </html>
-    """
+      @reader.read('index') % { request_count: request_count }     
     end
     # Concatenate diagnostics
     # Return response_string

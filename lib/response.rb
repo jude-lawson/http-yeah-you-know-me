@@ -14,7 +14,7 @@ class Response
     @path = request.path
     @method = request.method
     @protocol = request.protocol
-    @request_count = request.count
+    @request_count = request_count
     @router = Router.new
     # Body string
     @body = set_body(@path)
@@ -33,7 +33,6 @@ class Response
   end
 
   def set_body(path)
-    #returns string of html using Router, but for now...
-    @router.respond('/')
+    @router.respond('/', @request_count)
   end
 end

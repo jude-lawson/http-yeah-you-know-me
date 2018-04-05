@@ -20,7 +20,6 @@ class ServerWorker
       client = @server.accept
       request = handle_request(client)
       response = Response.new(request, @request_count)
-      # require 'pry';binding.pry
       send_response(client, response)
       client.close
     end
@@ -35,7 +34,7 @@ class ServerWorker
     end
     puts "Received request: #{lines_of_request}"
     add_to_request_count
-    Request.new(lines_of_request, @request_count)
+    Request.new(lines_of_request)
   end
 
   def send_response(client, response)
