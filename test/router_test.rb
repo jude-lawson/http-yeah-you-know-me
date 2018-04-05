@@ -16,7 +16,7 @@ class RouterTest < Minitest::Test
   end
 
   def test_response_to_root_returns_index_html_and_diagnostics
-    expected = "<!DOCTYPE html>\n<html>\n<head>\n</head>\n  <body>\n    <p>Hello, World! (0)</p>\n  </body>\n</html>"
+    expected = "<!DOCTYPE html>\n<html>\n<head>\n</head>\n  <body>\n    <p>Hello, World! (0)</p>\n  </body>\n  <footer>\n    <div><pre>Method: #{@request.method}\r\n\nPath: #{@request.path}\r\n\nProtocol: #{@request.protocol}\r\n\n#{@request.headers.join("\n")}</pre></div>\n  </footer>\n</html>"
     assert_equal expected, @router.respond('/', @request)
   end
 
