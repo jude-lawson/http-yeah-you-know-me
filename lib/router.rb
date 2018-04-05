@@ -6,7 +6,6 @@ class Router
   end
 
   def respond(path)
-    response = Response.new
     case path
     when '/'
     end
