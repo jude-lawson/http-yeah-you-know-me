@@ -5,13 +5,11 @@ class Router
     @reader = HTMLReader.new
   end
 
-  def respond(path, request_count = 0)
-    # Local variable response_string
+  def respond(path, request, request_count = 0)
+    diagnostics = "<pre>Method: #{request.method}\r\n\nPath: #{request.path}\r\n\nProtocol: #{request.protocol}\r\n\n#{request.headers.join("\n")}</pre>"
     case path
     when '/'
-      @reader.read('index') % { request_count: request_count }     
+      @reader.read('index') % { request_count: request_count, diagnostics: diagnostics }     
     end
-    # Concatenate diagnostics
-    # Return response_string
   end
 end
