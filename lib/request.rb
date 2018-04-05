@@ -14,6 +14,8 @@ class Request
     @protocol = nil
     @headers = lines_of_request[1...-2]
     @body = lines_of_request[-1]
+
+    parse_initial_line
   end
 
   def parse_initial_line
