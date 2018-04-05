@@ -3,11 +3,11 @@ HTTP, Yeah You Know Me Project
 Project Requirements
 --------------------
 * Iteration 0 - Build a web application/server that...
-** Listens on port 9292
-** Responds to HTTP requests
-** responds with a valid HTML response that...
-*** Displays `Hello, World! (0)`
-*** `(0)` incerments on each request until the server is restarted
+** ~Listens on port 9292~
+** ~Responds to HTTP requests~
+** ~responds with a valid HTML response that...~
+*** ~Displays `Hello, World! (0)`~
+*** ~`(0)` incerments on each request until the server is restarted~
 * Iteration 1 - Output Diagnostics
 ** Include a block of HTML (code like) that includes information about the actual request, includoing...
 *** Verb (HTTP verb like GET, POST, etc.)
