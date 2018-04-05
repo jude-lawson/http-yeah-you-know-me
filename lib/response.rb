@@ -15,7 +15,7 @@ class Response
     @protocol = request.protocol
     @router = Router.new
     # Body string
-    @body = "<html><head></head><body><p>Hello, World! (0)</p></body></html>"
+    @body = set_body(@path)
     # Headers, just a string?
       # Date
       # Server
@@ -25,7 +25,13 @@ class Response
       "Date: #{Time.now}",
       "Server: ruby",
       "Content-Type: text/html, charset=utf-8",
-      "Content-Length: #{@body.length}"
+      "Content-Length: #{@body.length}",
+      "\r\n"
     ]
+  end
+
+  def set_body(path)
+    #returns string of html using Router, but for now...
+    "<html><head></head><body><p>Hello, World! (0)</p></body></html>"
   end
 end
